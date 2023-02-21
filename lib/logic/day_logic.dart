@@ -1,14 +1,14 @@
 import 'package:acme_ioet/logic/schedule_logic.dart';
+import 'package:acme_ioet/logic/split_name_and_schedule_mixin.dart';
 import 'package:acme_ioet/models/day.dart';
-import 'package:acme_ioet/utils/utils.dart';
 
-class DayLogic {
+class DayLogic with SplitNameAndScheduleMixin {
   List<Day> getDays(String employeeInformation) {
     ScheduleLogic scheduleLogic = ScheduleLogic();
     List<Day> days = [];
     try {
       List<String> employeeTimeFrames =
-          Utils.splitNameAndSchedule(employeeInformation)[1].split(",");
+          splitNameAndSchedule(employeeInformation)[1].split(",");
       for (String employeeTimeFrame in employeeTimeFrames) {
         days.add(
           Day(

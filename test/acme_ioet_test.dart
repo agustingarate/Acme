@@ -1,46 +1,27 @@
 import 'package:acme_ioet/logic/day_logic.dart';
 import 'package:acme_ioet/logic/employee_logic.dart';
 import 'package:acme_ioet/logic/schedule_logic.dart';
+import 'package:acme_ioet/logic/split_name_and_schedule_mixin.dart';
 import 'package:acme_ioet/models/day.dart';
 import 'package:acme_ioet/models/schedule.dart';
-import 'package:acme_ioet/utils/utils.dart';
 import 'package:test/test.dart';
 
 void main() {
-/*Test de integracion:
-  1) Sistema fun
-*/
-
-/*
-  splitNameAndScheduleTest
-    - the employeeInformation has the correct format. X
-    - the employeeInformation string hasn't an '='
-    - personSchedule is equal to '='
-
-  getEmployeeNameTest
-    - the employeeInformation has the correct format. X
-  
-  getDaysTest
-    - the employeeInformation has the correct format. X
-  getScheduleTest
-    - the timeFrame has the correct format.
-
-
-  convertTimeToHours
-    - The time string has the correct format.
-  printEmployeeCoincidences
-*/
-
   group("splitNameAndScheduleTest", () {
+    SplitNameAndScheduleMixin splitNameAndScheduleMixin =
+        SplitNameAndScheduleMixin();
     test("the employeeInformation has the correct format", () {
       String employeeInformation = "LUNA=MO10:00-18:00,SA11:13-17:25";
-      expect(Utils.splitNameAndSchedule(employeeInformation),
+      expect(
+          splitNameAndScheduleMixin.splitNameAndSchedule(employeeInformation),
           ["LUNA", "MO10:00-18:00,SA11:13-17:25"]);
     });
 
     test("the employeeInformation doesn't have an =", () {
       String employeeInformation = "LUNAMO10:00-18:00,SA11:13-17:25";
-      expect(() => Utils.splitNameAndSchedule(employeeInformation),
+      expect(
+          () => splitNameAndScheduleMixin
+              .splitNameAndSchedule(employeeInformation),
           throwsA(isA<Exception>()));
     });
   });

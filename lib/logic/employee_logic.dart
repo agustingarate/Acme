@@ -1,12 +1,18 @@
+import 'package:acme_ioet/data/employee_data.dart';
 import 'package:acme_ioet/logic/day_logic.dart';
+import 'package:acme_ioet/logic/split_name_and_schedule_mixin.dart';
 import 'package:acme_ioet/models/employee.dart';
 import 'package:acme_ioet/models/day.dart';
-import 'package:acme_ioet/utils/utils.dart';
 
-class EmployeeLogic {
-  List<Employee> initializePeopleMap(List<String> employeesInformationList) {
-    List<Employee> employees = [];
+class EmployeeLogic with SplitNameAndScheduleMixin {
+  Future<List<Employee>> initializePeopleMap() async {
     DayLogic dayLogic = DayLogic();
+    EmployeeData employeeData = EmployeeData();
+
+    List<Employee> employees = [];
+    List<String> employeesInformationList =
+        await employeeData.readFileByLines("lib/data/schedule_data.txt");
+
     if (employeesInformationList.isNotEmpty) {
       for (var employeeInformation in employeesInformationList) {
         employees.add(
@@ -23,7 +29,7 @@ class EmployeeLogic {
   }
 
   String getEmployeeName(String employeeInformation) {
-    return Utils.splitNameAndSchedule(employeeInformation)[0];
+    return splitNameAndSchedule(employeeInformation)[0];
   }
 
   void printEmployeeCoincidences(List<Employee> employees) {
