@@ -5,10 +5,14 @@ import 'package:acme_ioet/utils/utils.dart';
 class MainApp {
   void myApp() async {
     EmployeeLogic employeeLogic = EmployeeLogic();
-    List<String> employeesInformationList =
-        await readFileByLines("lib/data/schedule_data.txt");
-    List<Employee> employees =
-        employeeLogic.initializePeopleMap(employeesInformationList);
-    employeeLogic.printEmployeeCoincidences(employees);
+    try {
+      List<String> employeesInformationList =
+          await Utils.readFileByLines("lib/data/schedule_data.txt");
+      List<Employee> employees =
+          employeeLogic.initializePeopleMap(employeesInformationList);
+      employeeLogic.printEmployeeCoincidences(employees);
+    } catch (e) {
+      print(e);
+    }
   }
 }

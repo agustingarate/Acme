@@ -7,20 +7,23 @@ class EmployeeLogic {
   List<Employee> initializePeopleMap(List<String> employeesInformationList) {
     List<Employee> employees = [];
     DayLogic dayLogic = DayLogic();
-
-    for (var employeeInformation in employeesInformationList) {
-      employees.add(
-        Employee(
-          name: getEmployeeName(employeeInformation),
-          days: dayLogic.getDays(employeeInformation),
-        ),
-      );
+    if (employeesInformationList.isNotEmpty) {
+      for (var employeeInformation in employeesInformationList) {
+        employees.add(
+          Employee(
+            name: getEmployeeName(employeeInformation),
+            days: dayLogic.getDays(employeeInformation),
+          ),
+        );
+      }
+      return employees;
+    } else {
+      throw Exception("Employees Information List is empty");
     }
-    return employees;
   }
 
   String getEmployeeName(String employeeInformation) {
-    return splitNameAndSchedule(employeeInformation)[0];
+    return Utils.splitNameAndSchedule(employeeInformation)[0];
   }
 
   void printEmployeeCoincidences(List<Employee> employees) {
