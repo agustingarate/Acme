@@ -26,15 +26,17 @@ The input is the name of an employee and the schedule they worked, indicating th
 
     RENE-ASTRID: 3
 
-## Solution
+## Solution  
 To create a solution for this problem I've decided use Dart as a programming language under a methodology based in create an first prototype with the main goal of understand the exercise statement and the requirements to then increment the functionalities, efficiency and apply good practices.
 
-### Architecture
+### Architecture 
 For this project I've applied an monolithic three-layer architecture which it's describe below:
 In this approach the application's components can be describe as a part of one of tree layers:      
-
-![Architecture diagram](assets/images/architecture.drawio.png "Architecture diagram")    
-
+<br>
+<p align="center">
+    <img src="assets/images/architecture.drawio.png">
+</p>
+<br>
 
  1. ***Presentation:*** This is what the users see and in this case include the acme.ioet.dar which shows the application's output.
  2. ***Business tier:*** Is the main core of the application and includes the business logic and the modeling of the entities (Employee, Days, Schedule).
@@ -59,9 +61,16 @@ Let's see the application running. At first, it needs a minimum of five rows of 
 
 If there are less than five rows or at least one of them hasn't the correct format then the program will throw an exception and show and error message. If the conditions are met, then the output will be:
 
-
-![Output](assets/images/runAppExample.png "Output")
+<br>
+<p align="center">
+    <img  src="assets/images/runAppExample.png">
+</p>
+<br>
 
 In order to verify the application we can run all the tests:  
 
-![Tests](assets/images/runTestsExample.png "Tests")
+<br>
+<p align="center">
+    <img src="assets/images/runTestsExample.png">
+</p>
+<br>
