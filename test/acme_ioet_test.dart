@@ -1,7 +1,7 @@
-import 'package:acme_ioet/logic/day_logic.dart';
-import 'package:acme_ioet/logic/employee_logic.dart';
-import 'package:acme_ioet/logic/schedule_logic.dart';
-import 'package:acme_ioet/logic/split_name_and_schedule_mixin.dart';
+import 'package:acme_ioet/data/day_data.dart';
+import 'package:acme_ioet/data/employee_data.dart';
+import 'package:acme_ioet/data/schedule_data.dart';
+import 'package:acme_ioet/data/split_name_and_schedule_mixin.dart';
 import 'package:acme_ioet/models/day.dart';
 import 'package:acme_ioet/models/schedule.dart';
 import 'package:test/test.dart';
@@ -27,24 +27,24 @@ void main() {
   });
 
   group("getEmployeeNameTest", () {
-    EmployeeLogic employeeLogic = EmployeeLogic();
+    EmployeeData employeeData = EmployeeData();
     test("the employeeInformation has the correct format", () {
       String employeeInformation = "LUNA=MO10:00-18:00,SA11:13-17:25";
-      expect(employeeLogic.getEmployeeName(employeeInformation), "LUNA");
+      expect(employeeData.getEmployeeName(employeeInformation), "LUNA");
     });
     test("the employeeInformation doesn't have an =", () {
       String employeeInformation = "LUNAMO10:00-18:00,SA11:13-17:25";
-      expect(() => employeeLogic.getEmployeeName(employeeInformation),
+      expect(() => employeeData.getEmployeeName(employeeInformation),
           throwsA(isA<Exception>()));
     });
   });
 
   group("getDaysTest", () {
     test("the employeeInformation has the correct format", () {
-      DayLogic dayLogic = DayLogic();
+      DayData dayData = DayData();
 
       String employeeInformation = "LUNA=MO10:00-18:00,SA12:00-17:30";
-      List expectedDays = dayLogic.getDays(employeeInformation);
+      List expectedDays = dayData.getDays(employeeInformation);
       List realDays = [
         Day(
           name: "MO",
@@ -69,27 +69,27 @@ void main() {
   });
 
   group("convertTimeToHoursTest", () {
-    ScheduleLogic scheduleLogic = ScheduleLogic();
+    ScheduleData scheduleData = ScheduleData();
     group("The time String has the correct format", () {
       test("Exact hour (Ex: 10:00)", () {
-        expect(scheduleLogic.convertTimeToHours('10:00'), 10);
+        expect(scheduleData.convertTimeToHours('10:00'), 10);
       });
       test("Midnight", () {
-        expect(scheduleLogic.convertTimeToHours('00:00'), 0);
+        expect(scheduleData.convertTimeToHours('00:00'), 0);
       });
 
       test("Half past", () {
-        expect(scheduleLogic.convertTimeToHours('18:30'), 18.5);
+        expect(scheduleData.convertTimeToHours('18:30'), 18.5);
       });
     });
 
     group("The time hasn't the correct format", () {
       test("doesn't have an :", () {
-        expect(() => scheduleLogic.convertTimeToHours("1530"),
+        expect(() => scheduleData.convertTimeToHours("1530"),
             throwsA(isA<Exception>()));
       });
       test("doesn't have the hours or minutes", () {
-        expect(() => scheduleLogic.convertTimeToHours(":"),
+        expect(() => scheduleData.convertTimeToHours(":"),
             throwsA(isA<Exception>()));
       });
     });

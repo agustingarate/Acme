@@ -1,6 +1,6 @@
 import 'package:acme_ioet/models/schedule.dart';
 
-class ScheduleLogic {
+class ScheduleData {
   Schedule getSchedule(String timeFrame) {
     if (timeFrame.contains("-")) {
       List<String> timeFrameSplitted = timeFrame.split("-");
