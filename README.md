@@ -31,7 +31,10 @@ To create a solution for this problem I've decided use Dart as a programming lan
 
 ### Architecture
 For this project I've applied an monolithic three-layer architecture which it's describe below:
-In this approach the application's components can be describe as a part of one of tree layers:
+In this approach the application's components can be describe as a part of one of tree layers:      
+
+![Architecture diagram](assets/images/architecture.drawio.png "Architecture diagram")    
+
 
  1. ***Presentation:*** This is what the users see and in this case include the acme.ioet.dar which shows the application's output.
  2. ***Business tier:*** Is the main core of the application and includes the business logic and the modeling of the entities (Employee, Days, Schedule).
@@ -45,3 +48,20 @@ To run the application and its test is necessary install Dart in your computer, 
 
     dart run
     dart test
+
+Let's see the application running. At first, it needs a minimum of five rows of data as an input. In this case:
+
+    RENE=MO10:00-12:00,TU10:00-12:00,TH01:00-03:00,SA14:00-18:00,SU20:00-21:00
+    ASTRID=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00
+    ANDRES=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00
+    AGUSTIN=MO10:15-12:00,TU10:00-12:00,TH13:00-13:15,SA14:00-18:00,SU20:00-21:00
+    GABRIELA=MO10:00-12:00,TH12:00-14:00,SU20:00-21:00
+
+If there are less than five rows or at least one of them hasn't the correct format then the program will throw an exception and show and error message. If the conditions are met, then the output will be:
+
+
+![Output](assets/images/runAppExample.png "Output")
+
+In order to verify the application we can run all the tests:  
+
+![Tests](assets/images/runTestsExample.png "Tests")
