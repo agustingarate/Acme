@@ -5,7 +5,7 @@ import 'package:acme_ioet/models/employee.dart';
 import 'package:acme_ioet/models/day.dart';
 
 class EmployeeLogic with SplitNameAndScheduleMixin {
-  Future<List<Employee>> initializePeopleMap() async {
+  Future<List<Employee>> initializeEmployeesList() async {
     DayLogic dayLogic = DayLogic();
     EmployeeData employeeData = EmployeeData();
 
